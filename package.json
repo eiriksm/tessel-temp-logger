@@ -6,11 +6,6 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {
-    "coveralls": "^2.11.2",
-    "istanbul": "^0.3.5",
-    "should": "^4.6.1"
-  },
   "devDependencies": {
     "coveralls": "^2.11.2",
     "istanbul": "^0.3.5",
