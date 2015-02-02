@@ -16,7 +16,10 @@ TempLogger.prototype.start = function(callback) {
     self.log('Connected to si7005');
 
 
-    setInterval(function() {
+    var repeatFunc = function() {
+      if (self.stopped) {
+        return;
+      }
       self.climate.readTemperature('c', function (err, temp) {
         if (err) {
           // @todo. Should probably do something more sensible here.
@@ -26,14 +29,17 @@ TempLogger.prototype.start = function(callback) {
         self.log('Sending callback for id', self.id);
         callback(temp);
       });
-    }, self.interval * 1000);
+      self._repeater = setTimeout(repeatFunc, self.interval * 1000);
+    };
+    self._repeater = setTimeout(repeatFunc, self.interval * 1000);
 
 
   });
 };
 
 TempLogger.prototype.stop = function() {
-  clearInterval(this._repeater);
+  clearTimeout(this._repeater);
+  this.stopped = true;
 };
 
 TempLogger.prototype.log = function() {
