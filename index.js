@@ -6,8 +6,8 @@ function TempLogger(climate, opts) {
   self.climate = climate;
   self.debug = opts.debug || false;
   self.interval = opts.interval || 60000;
-  self.id = Math.random();
-  self.log('Starting plop logger with id', self.id);
+  self.id = (Math.random() + '').substring(2);
+  self.log('Starting temp logger with id', self.id);
 }
 
 TempLogger.prototype.start = function(callback) {
@@ -24,10 +24,11 @@ TempLogger.prototype.start = function(callback) {
         if (err) {
           // @todo. Should probably do something more sensible here.
           self.log('Had an error in the readTemperature function. Error was: ' + err);
+          callback(err);
           return;
         }
         self.log('Sending callback for id', self.id);
-        callback(temp);
+        callback(null, temp);
       });
       self._repeater = setTimeout(repeatFunc, self.interval * 1000);
     };

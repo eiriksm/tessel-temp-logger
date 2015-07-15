@@ -22,7 +22,7 @@ describe('Module functionality', function() {
     var l = require('..')(mockLib, {
       interval: 0.5
     });
-    l.start(function(d) {
+    l.start(function(e, d) {
       l.stop();
       d.should.equal(123);
       done();
@@ -35,9 +35,9 @@ describe('Module functionality', function() {
       // Adding debug for coverage.
       debug: true
     });
-    l.start(function(d) {
+    l.start(function(e, d) {
       l.stop();
-      d.should.equal(123);
+      e.message.should.equal('YOLO!');
       done();
     });
     // And just to be safe. Add an error in there
