@@ -22,8 +22,8 @@ TempLogger.prototype.start = function(callback) {
       }
       self.climate.readTemperature('c', function (err, temp) {
         if (err) {
-          // @todo. Should probably do something more sensible here.
           self.log('Had an error in the readTemperature function. Error was: ' + err);
+          self.stopped = true;
           callback(err);
           return;
         }
