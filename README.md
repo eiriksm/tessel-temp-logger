@@ -17,7 +17,7 @@ var options = {
   interval: 1  // Interval for sending data back (in seconds).
 };
 
-var ttl = require('./index.js')(climate, options);
+var ttl = require('tessel-plops-logger')(climate, options);
 var numberOfChecks = 0;
 
 // Function to call at every interval end.
