@@ -5,7 +5,7 @@ function TempLogger(climate, opts) {
   self.log('Created new temp logger with options ', opts);
   self.climate = climate;
   self.debug = opts.debug || false;
-  self.interval = opts.interval || 60000;
+  self.interval = opts.interval || 60;
   self.id = (Math.random() + '').substring(2);
   self.log('Starting temp logger with id', self.id);
 }
