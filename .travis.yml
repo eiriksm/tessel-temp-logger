@@ -1,11 +1,18 @@
 language: node_js
 node_js:
-  - "0.12"
-  - "0.10"
-  - "io.js"
-
+- '0.12'
+- '0.10'
+- io.js
 sudo: false
 script:
-  - make test-cov
+- make test-cov
 after_script:
-  - cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+- cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+deploy:
+  provider: npm
+  email: eirik@morland.no
+  api_key:
+    secure: cvyEjV+IE3wysbv/ZqmrC66klEaviwJFFamdQe5kPlPqxXGxRa6XUn9DSfs31okPkH07Yfz44yby62La262sZLL1aQtAIGuXYEmImGNxGbhnrO10T0ib2fXM3UbtYAo+QAE6zt5K21M41B342l0vyIAJtSMdq74e2UKgl+s1d0s=
+  on:
+    tags: true
+    repo: eiriksm/tessel-temp-logger
