@@ -1,6 +1,6 @@
 {
   "name": "tessel-temp-logger",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "tessel beer temperature climate",
   "main": "index.js",
   "directories": {
